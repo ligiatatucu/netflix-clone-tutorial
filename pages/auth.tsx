@@ -50,7 +50,7 @@ const Auth = () => {
             password
           });
           login();
-        } catch (error: any) {
+        } catch (error) {
           if (axios.isAxiosError(error)) {
             if (error.response?.status === 422) {
            
@@ -82,10 +82,11 @@ const Auth = () => {
                         <h2 className="text-white text-4xl mb-8 font-semibold">{variant === 'login' ? 'Sign In' : 'Register'} </h2>
                         <div className="flex flex-col gap-4">
                             {variant  === 'register' && (
-                                <Input id="name"  value={name} label="Username" onChange={(e) => {setName(e.target.value)}}/>
+                                <Input id="name"  value={name} label="Username" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}/>
+                                
                             )}
-                            <Input id="email" type="email" value={email} label="Email" onChange={(e) => {setEmail(e.target.value)}}/>
-                            <Input id="password" type="password" value={password} label="Password" onChange={(e) => {setPassword(e.target.value)}}/>
+                            <Input id="email" type="email" value={email} label="Email"  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}/>
+                            <Input id="password" type="password" value={password} label="Password"   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}/>
                             <button onClick={variant === "login" ? login : register} className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition">{variant == 'login' ? 'Log in' : 'Sign Up'}</button>
                             {errorMessage && (
                                  <p className="text-red-500 mt-4 text-sm text-center">{errorMessage}</p>

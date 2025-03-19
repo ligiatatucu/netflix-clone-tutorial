@@ -2,7 +2,6 @@
 import { getSession} from 'next-auth/react';
 import { NextPageContext } from 'next';
 //hooks
-import useCurrentUser from '@/hooks/useCurrentUser';
 import useInfoModal from '@/hooks/useInfoModal';
 //components
 import Navbar from '@/components/Navbar';

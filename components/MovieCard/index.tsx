@@ -5,15 +5,22 @@ import {BiChevronDown} from "react-icons/bi";
 import FavoriteButton from "../FavoriteButton";
 import useInfoModal from "@/hooks/useInfoModal";
 
+interface Movie {
+    id: string;
+    thumbnailUrl: string;
+    duration: string;
+    genre: string;
+  }
+
 interface MovieCardProps  {
-    data: Record<string, any>;
+    data: Movie
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({data}) => {
 
     const router = useRouter();
     const {openModal} = useInfoModal();
-    
+
     return (
         <div className="group bg-zinc-900 col-span relative h-[21vw]">     
             <img className="cursor-pointer object-cover transition duration-300 shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[12vw]" src={data?.thumbnailUrl} alt="movie thumbnail" />
