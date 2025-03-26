@@ -25,28 +25,33 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error('Email and password are required');
+        try {
+          if (!credentials?.email || !credentials?.password) {
+            return null;
+          }
+
+          const user = await prismadb.user.findUnique({
+            where: { email: credentials.email },
+          });
+
+          if (!user || !user.hashedPassword) {
+            return null;
+          }
+
+          const isCorrectPassword = await compare(
+            credentials.password,
+            user.hashedPassword
+          );
+
+          if (!isCorrectPassword) {
+            return null;
+          }
+
+          return user;
+        } catch (error) {
+          console.error('[AUTHORIZE_ERROR]', error);
+          return null;
         }
-
-        const user = await prismadb.user.findUnique({
-          where: { email: credentials.email },
-        });
-
-        if (!user || !user.hashedPassword) {
-          throw new Error('Email does not exist!');
-        }
-
-        const isCorrectPassword = await compare(
-          credentials.password,
-          user.hashedPassword
-        );
-
-        if (!isCorrectPassword) {
-          throw new Error('Incorrect password');
-        }
-
-        return user;
       },
     }),
   ],
