@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/auth',
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: true,
   adapter: PrismaAdapter(prismadb),
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET,
