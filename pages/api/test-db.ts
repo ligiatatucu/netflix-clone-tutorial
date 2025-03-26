@@ -7,18 +7,15 @@ export default async function handler(
 ) {
   try {
     const users = await prismadb.user.findMany();
-    res.status(200).json({ users });
-  } catch (error) {
+    res.status(200).json({ success: true, users });
+  } catch (error: any) {
     console.error('[TEST_DB_ERROR]', error);
 
-    if (error instanceof Error) {
-      res.status(500).json({
-        message: error.message,
-        name: error.name,
-        stack: error.stack,
-      });
-    } else {
-      res.status(500).json({ message: 'Unknown error' });
-    }
+    res.status(500).json({
+      success: false,
+      message: error?.message || 'Unknown error',
+      name: error?.name || 'UnknownError',
+      stack: error?.stack || 'No stack trace',
+    });
   }
 }
