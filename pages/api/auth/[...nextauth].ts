@@ -62,7 +62,48 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prismadb),
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET,
+
+  callbacks: {
+    async signIn({ user, account }) {
+      if (!user.email || !account?.provider) return false;
+
+      const existingUser = await prismadb.user.findUnique({
+        where: { email: user.email },
+        include: { accounts: true },
+      });
+
+      if (!existingUser) return true;
+
+      const hasAccountWithProvider = existingUser.accounts.some(
+        (acc) => acc.provider === account.provider
+      );
+
+      if (!hasAccountWithProvider) {
+        try {
+          await prismadb.account.create({
+            data: {
+              userId: existingUser.id,
+              provider: account.provider,
+              type: account.type,
+              providerAccountId: account.providerAccountId,
+              access_token: account.access_token,
+              refresh_token: account.refresh_token,
+              expires_at: account.expires_at,
+              token_type: account.token_type,
+              scope: account.scope,
+              id_token: account.id_token,
+              session_state: account.session_state,
+            },
+          });
+        } catch (err) {
+          console.error('[LINK_ACCOUNT_ERROR]', err);
+          return false;
+        }
+      }
+
+      return true;
+    },
+  },
 };
 
-// Export separately for API usage
 export default NextAuth(authOptions);
