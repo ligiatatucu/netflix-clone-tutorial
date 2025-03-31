@@ -1,45 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+📺 Netflix Clone
+This is a Netflix-inspired web application built with Next.js, Tailwind CSS, MongoDB, and NextAuth. It replicates core features of the popular streaming platform, including user authentication, movie browsing, and the ability to add movies to a personalized favorites list.
 
-## Getting Started
+⚠️ Note: This project is built for learning purposes. It is based on online tutorials and is continuously being improved as part of my ongoing learning journey in full-stack web development.
 
-First, run the development server:
+🔥 Features
+🔐 User authentication with NextAuth (Google login)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🎬 Browse a selection of trending and popular movies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+❤️ Add or remove movies from your favorites
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+🌐 Responsive design for all devices
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+⚙️ Backend with MongoDB for persistent user data
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+🎨 UI styled with Tailwind CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🛠️ Tech Stack
+1) Next.js (App Router)
 
-## Learn More
+2) React
 
-To learn more about Next.js, take a look at the following resources:
+3) Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+4) MongoDB
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5) NextAuth
 
-## Deploy on Vercel
+6) Prisma
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🚀 Live Demo
+👉 netflix-clone-alpha-snowy.vercel.app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+📦 Installation & Setup
+**Clone the repository**
+
+  git clone https://github.com/ligiatatucu/netflix-clone-tutorial.git
+  cd netflix-clone-tutorial
+  Install dependencies
+
+  npm install
+  Set up environment variables
+
+**Create a .env file in the root directory and add the following:**
 
 
-//
-create a new account => profile=>homepage
-github account => works
+  NEXTAUTH_SECRET=your_nextauth_secret
+  NEXTAUTH_URL=http://localhost:3000
+  GOOGLE_CLIENT_ID=your_google_client_id
+  GOOGLE_CLIENT_SECRET=your_google_client_secret
+  MONGODB_URI=your_mongodb_connection_string
+  
+**Run the app locally**
+  npm run dev
+  Open http://localhost:3000 in your browser.
+  
+🤝 Contributing
+This project is still a work in progress and welcomes suggestions or improvements. If you have ideas or want to contribute:
+
+Fork this repo
+
+1) Create a branch (git checkout -b feature/your-feature-name)
+
+2) Commit your changes (git commit -m 'Add new feature')
+
+3) Push to the branch (git push origin feature/your-feature-name)
+
+4) Open a Pull Request
