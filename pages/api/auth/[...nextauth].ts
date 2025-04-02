@@ -78,6 +78,8 @@ export const authOptions: NextAuthOptions = {
         (acc) => acc.provider === account.provider
       );
 
+      // dacă nu are cont asociat cu acest provider, încearcă să îl adaugi,
+      // DAR nu bloca login-ul dacă apare o eroare
       if (!hasAccountWithProvider) {
         try {
           await prismadb.account.create({
@@ -96,7 +98,7 @@ export const authOptions: NextAuthOptions = {
           });
         } catch (err) {
           console.error('[LINK_ACCOUNT_ERROR]', err);
-          return false;
+          // În loc de return false, doar loghează și continuă
         }
       }
 
